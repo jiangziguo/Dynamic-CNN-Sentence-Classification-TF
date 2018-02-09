@@ -4,6 +4,7 @@ import dataUtils
 import numpy as np
 import time
 import os
+import tensorflow as tf
 
 embed_dim = 100
 ws = [7, 5]
@@ -177,9 +178,9 @@ with tf.Session() as sess:
                 path = saver.save(sess, checkpoint_prefix, global_step=current_step)
             print("")
         if current_step % checkpoint_every == 0:
-            print 'Best of valid = {}, at step {}'.format(max_acc, best_at_step)
+            print('Best of valid = {}, at step {}'.format(max_acc, best_at_step))
 
     saver.restore(sess, checkpoint_prefix + '-' + str(best_at_step))
-    print 'Finish training. On test set:'
+    print('Finish training. On test set:')
     acc, loss = dev_step(x_test, y_test, writer=None)
-    print acc, loss
+    print(acc, loss)

@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-import  embedding as emb
+import embedding as emb
 def qselect(A, k):
     if len(A) < k: return A
     pivot = A[-1]
@@ -49,7 +49,7 @@ with tf.Session() as sess:
     W1 = init_weights([ws[0], embed_dim, 1, num_filters[0]], "W1")
     b1 = tf.Variable(tf.constant(0.1, shape=[num_filters[0], embed_dim]), "b1")
     init = tf.global_variables_initializer().run()
-    print W1.eval(), b1.eval()
+    print(W1.eval(), b1.eval())
 
     input_unstack = tf.unstack(input_x, axis=2)
     w_unstack = tf.unstack(W1, axis=1)
@@ -69,4 +69,4 @@ with tf.Session() as sess:
     conv2 = tf.stack(convs, axis=2)
 
     a, b, c ,d, e = sess.run([input_x, conv, conv1, values, indices], feed_dict={sent:[[1,2,3,4,5,6,7,8,9,10],[11,12,13,14,15,16,17,18,19,20]]})
-    print a,b,c,d,e
+    print(a,b,c,d,e)

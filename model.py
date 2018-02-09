@@ -68,6 +68,6 @@ class DCNN():
         conv2 = self.per_dim_conv_layer(conv1, W2, b2)
         fold = self.fold_k_max_pooling(conv2, top_k)
         fold_flatten = tf.reshape(fold, [-1, top_k*100*14/4])
-        print fold_flatten.get_shape()
+        print(fold_flatten.get_shape())
         out = self.full_connect_layer(fold_flatten, Wh, bh, Wo, dropout_keep_prob)
         return out
